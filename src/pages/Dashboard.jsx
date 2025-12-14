@@ -44,7 +44,7 @@ const Dashboard = () => {
 
   const fetchSweets = async () => {
     try {
-      const response = await axios.get('/api/sweets');
+      const response = await axios.get('https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets');
       setSweets(response.data.sweets);
       setFilteredSweets(response.data.sweets);
     } catch (error) {
@@ -63,7 +63,7 @@ const Dashboard = () => {
       if (searchQuery.maxPrice) params.append('maxPrice', searchQuery.maxPrice);
 
       if (params.toString()) {
-        const response = await axios.get(`/api/sweets/search?${params.toString()}`);
+        const response = await axios.get(`https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets/search?${params.toString()}`);
         setFilteredSweets(response.data.sweets);
       } else {
         setFilteredSweets(sweets);
@@ -77,7 +77,7 @@ const Dashboard = () => {
 
   const handlePurchase = async (sweetId, quantity = 1) => {
     try {
-      await axios.post(`/api/sweets/${sweetId}/purchase`, { quantity });
+      await axios.post(`https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets/${sweetId}/purchase`, { quantity });
       fetchSweets();
       setToast({ message: 'Purchase successful!', type: 'success' });
     } catch (error) {
@@ -87,7 +87,7 @@ const Dashboard = () => {
 
   const handleRestock = async (sweetId, quantity) => {
     try {
-      await axios.post(`/api/sweets/${sweetId}/restock`, { quantity });
+      await axios.post(`https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets/${sweetId}/restock`, { quantity });
       fetchSweets();
       setShowRestockModal(false);
       setRestockingSweet(null);
@@ -99,7 +99,7 @@ const Dashboard = () => {
 
   const handleCreate = async (sweetData) => {
     try {
-      await axios.post('/api/sweets', sweetData);
+      await axios.post('https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets', sweetData);
       fetchSweets();
       setShowModal(false);
       setToast({ message: 'Sweet created successfully!', type: 'success' });
@@ -110,7 +110,7 @@ const Dashboard = () => {
 
   const handleUpdate = async (sweetId, sweetData) => {
     try {
-      await axios.put(`/api/sweets/${sweetId}`, sweetData);
+      await axios.put(`https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets/${sweetId}`, sweetData);
       fetchSweets();
       setShowModal(false);
       setEditingSweet(null);
@@ -124,7 +124,7 @@ const Dashboard = () => {
     if (!window.confirm('Are you sure you want to delete this sweet?')) return;
 
     try {
-      await axios.delete(`/api/sweets/${sweetId}`);
+      await axios.delete(`https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/sweets/${sweetId}`);
       fetchSweets();
       setToast({ message: 'Sweet deleted successfully!', type: 'success' });
     } catch (error) {
