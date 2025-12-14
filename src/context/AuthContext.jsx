@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const response = await axios.post('https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/auth/login', { email, password });
+      const response = await axios.post('https://vercel-backendsweetshopmanagement-production.up.railway.app/api/auth/login', { email, password });
       const { token: newToken, user: userData } = response.data;
       
       localStorage.setItem('token', newToken);
@@ -50,7 +50,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (username, email, password, role = 'user') => {
     try {
-      const response = await axios.post('https://vercel-backend-sweet-shop-managemen-six.vercel.app/api/auth/register', {
+      const response = await axios.post('https://vercel-backendsweetshopmanagement-production.up.railway.app/api/auth/register', {
         username,
         email,
         password,
